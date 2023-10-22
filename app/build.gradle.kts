@@ -69,6 +69,7 @@ dependencies {
 
     implementation("io.github.androidpoet:metaphor:1.1.6")
     implementation("io.coil-kt:coil:2.4.0")
+    implementation("com.github.anderscheow:validator:3.0.3")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

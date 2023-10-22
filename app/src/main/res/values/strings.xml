@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Point Of Sales</string>
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_profile">Profile</string>
+    <string name="txt_not_null">Tidak boleh NULL!</string>
+    <string name="txt_not_empty">Tidak boleh kosong!</string>
+    <string name="txt_not_email">Email tidak valid!</string>
+    <string name="txt_not_min_length_8">Minimal 8 karakter!</string>
+    <string name="txt_not_lowercase_and_uppercase">Harus mengandung Uppercase dan Lowercase!</string>
+    <string name="txt_not_valid_confirm_password">Password tidak sama dengan sebelumnya!</string>
+    <string name="txt_not_min_length_6">Minimal 6 karakter!</string>
+    <string name="txt_not_alphanumeric">Harus mengandung Alfa Numeric!</string>
 </resources>

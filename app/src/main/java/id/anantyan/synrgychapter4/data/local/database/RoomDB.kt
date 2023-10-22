@@ -4,14 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import id.anantyan.synrgychapter4.data.local.dao.ProductsDao
+import id.anantyan.synrgychapter4.data.local.dao.UsersDao
 import id.anantyan.synrgychapter4.data.local.entities.Category
 import id.anantyan.synrgychapter4.data.local.entities.Product
 import id.anantyan.synrgychapter4.data.local.entities.ProductsCategories
-import id.anantyan.synrgychapter4.data.local.entities.Users
+import id.anantyan.synrgychapter4.data.local.entities.User
 
 @Database(
     entities = [
-        Users::class,
+        User::class,
         Product::class,
         Category::class,
         ProductsCategories::class
@@ -39,6 +41,6 @@ abstract class RoomDB: RoomDatabase() {
         }
     }
 
-    abstract fun productsDao()
-    abstract fun usersDao()
+    abstract fun productsDao(): ProductsDao
+    abstract fun usersDao(): UsersDao
 }

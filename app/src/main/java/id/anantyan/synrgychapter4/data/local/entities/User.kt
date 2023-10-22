@@ -5,10 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tbl_users")
-data class Users(
+data class User(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long? = 0,
+    val id: Long = 0,
+
+    @ColumnInfo(name = "name")
+    val name: String? = null,
 
     @ColumnInfo(name = "username")
     val username: String? = null,

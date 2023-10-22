@@ -9,8 +9,8 @@ import androidx.room.Entity
 )
 data class ProductsCategories(
     @ColumnInfo(name = "product_id")
-    val productId: Long? = 0,
+    val productId: Long = 0,
 
     @ColumnInfo(name = "category_id")
-    val categoryId: Long? = 0
+    val categoryId: Long = 0
 )

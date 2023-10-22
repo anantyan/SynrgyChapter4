@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import id.anantyan.synrgychapter4.databinding.FragmentHomeBinding
@@ -25,11 +26,28 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback())
+        bindObserver()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onBackPressedCallback() = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            requireActivity().finish()
+        }
+    }
+
+    private fun bindObserver() {
+        viewModel.getAll.observe(viewLifecycleOwner) {
+
+        }
+
+        viewModel.getQuery.observe(viewLifecycleOwner) {
+
+        }
     }
 }
