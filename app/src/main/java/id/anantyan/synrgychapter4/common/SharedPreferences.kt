@@ -7,8 +7,7 @@ import androidx.preference.PreferenceManager
 
 class SharedPreferences(context: Context) : SharedHelper {
 
-    private var prefShared: SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
+    private var prefShared: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun setLogin(value: Boolean) = prefShared.set(LOOGED, value)
     override fun getLogin() = prefShared.getBoolean(LOOGED, false)

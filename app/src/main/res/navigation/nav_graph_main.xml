@@ -39,11 +39,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_addProductFragment"
-            app:destination="@id/addProductFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:destination="@id/addProductFragment" />
         <action
             android:id="@+id/action_homeFragment_to_editProductFragment"
             app:destination="@id/editProductFragment" />
@@ -52,25 +48,30 @@
         android:id="@+id/profileFragment"
         android:name="id.anantyan.synrgychapter4.presentation.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/nav_graph_main"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <dialog
         android:id="@+id/addProductFragment"
         android:name="id.anantyan.synrgychapter4.presentation.add_product.AddProductFragment"
         android:label="Add Product"
         tools:layout="@layout/fragment_add_product"/>
-    <fragment
+    <dialog
         android:id="@+id/editProductFragment"
         android:name="id.anantyan.synrgychapter4.presentation.edit_product.EditProductFragment"
-        android:label="Edit Product {name}"
-        tools:layout="@layout/fragment_edit_product" >
+        android:label="Edit Product"
+        tools:layout="@layout/fragment_edit_product">
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="-1" />
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue='""' />
-    </fragment>
+            android:defaultValue="-1L"
+            app:argType="long" />
+    </dialog>
 </navigation>

@@ -62,13 +62,14 @@ dependencies {
 
     implementation("androidx.room:room-ktx:2.6.0")
     implementation("androidx.room:room-runtime:2.6.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     ksp("androidx.room:room-compiler:2.6.0")
+
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    implementation("io.github.androidpoet:metaphor:1.1.6")
-    implementation("io.coil-kt:coil:2.4.0")
     implementation("com.github.anderscheow:validator:3.0.3")
 
     testImplementation("junit:junit:4.13.2")

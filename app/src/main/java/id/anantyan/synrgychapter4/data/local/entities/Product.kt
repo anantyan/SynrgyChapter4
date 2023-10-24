@@ -23,7 +23,10 @@ data class Product(
     val quantity: Long? = null,
 
     @ColumnInfo(name = "price")
-    val price: Int? = null
+    val price: Int? = null,
+
+    @ColumnInfo(name = "user_id")
+    val userId: Long? = null
 )
 
 data class ProductWithCategories(
@@ -35,5 +38,4 @@ data class ProductWithCategories(
     )
     val categories: List<Category>
 )
-
 

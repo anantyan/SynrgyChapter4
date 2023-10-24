@@ -10,6 +10,7 @@ import io.github.anderscheow.validator.rules.common.notNull
 import io.github.anderscheow.validator.rules.common.minimumLength
 import io.github.anderscheow.validator.rules.regex.PasswordRule
 import io.github.anderscheow.validator.rules.regex.alphanumericOnly
+import io.github.anderscheow.validator.rules.regex.digitsOnly
 import io.github.anderscheow.validator.rules.regex.email
 import io.github.anderscheow.validator.rules.regex.withPassword
 import io.github.anderscheow.validator.validation
@@ -54,6 +55,16 @@ fun TextInputLayout.usernameValid(): Validation {
             +notEmpty(R.string.txt_not_empty)
             +minimumLength(6, R.string.txt_not_min_length_6)
             +alphanumericOnly(R.string.txt_not_alphanumeric)
+        }
+    }
+}
+
+fun TextInputLayout.numericValid(): Validation {
+    return validation(this) {
+        rules {
+            +notNull(R.string.txt_not_null)
+            +notEmpty(R.string.txt_not_empty)
+            +digitsOnly(R.string.digits_only)
         }
     }
 }

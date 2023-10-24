@@ -16,13 +16,19 @@ class UsersRepositoryImpl(application: Application) : UsersRepository {
         if (users != null) {
             emit(UIState.Success(users))
         } else {
-            emit(UIState.Error("Akun yang anda masukan telah dibuat!"))
+            emit(UIState.Error("Akun yang anda masukan belum dibuat!"))
+        }
+    }
+
+    override suspend fun checkUser(id: Long?): Flow<User> = flow {
+        usersDao.checkUser(id)?.let { users ->
+            emit(users)
         }
     }
 
     override suspend fun register(user: User): Flow<UIState<Long>> = flow {
         val users = usersDao.duplicateUser(user.email, user.username)
-        if (users.email == null || users.username == null) {
+        if (users == null) {
             val results = usersDao.register(user)
             if (results != 0L) {
                 emit(UIState.Success(results))

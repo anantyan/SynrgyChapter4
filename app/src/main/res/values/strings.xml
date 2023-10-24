@@ -10,4 +10,5 @@
     <string name="txt_not_valid_confirm_password">Password tidak sama dengan sebelumnya!</string>
     <string name="txt_not_min_length_6">Minimal 6 karakter!</string>
     <string name="txt_not_alphanumeric">Harus mengandung Alfa Numeric!</string>
+    <string name="digits_only">Tidak boleh selain angka!</string>
 </resources>

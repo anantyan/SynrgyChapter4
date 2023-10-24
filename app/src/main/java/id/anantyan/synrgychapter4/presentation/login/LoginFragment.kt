@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import id.anantyan.synrgychapter4.common.UIState
 import id.anantyan.synrgychapter4.common.emailValid
@@ -21,7 +22,7 @@ import io.github.anderscheow.validator.validator
 
 class LoginFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by viewModels()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val pref: SharedHelper by lazy { SharedPreferences(requireContext()) }
@@ -105,7 +106,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun checkAuthentication() {
-        if (pref.getLogin() && pref.getUsrId() != -1L) {
+        if (pref.getLogin()) {
             val destination = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
             findNavController().navigate(destination)
         }

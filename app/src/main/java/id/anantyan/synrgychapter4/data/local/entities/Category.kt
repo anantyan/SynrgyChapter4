@@ -19,13 +19,3 @@ data class Category(
     @ColumnInfo(name = "description")
     val description: String? = null
 )
-
-data class CategoryWithProducts(
-    @Embedded val category: Category,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "id",
-        associateBy = Junction(ProductsCategories::class)
-    )
-    val products: List<Product>
-)

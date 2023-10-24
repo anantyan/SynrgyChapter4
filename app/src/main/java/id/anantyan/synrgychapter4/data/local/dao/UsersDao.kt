@@ -5,14 +5,18 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import id.anantyan.synrgychapter4.data.local.entities.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UsersDao {
     @Query("SELECT * FROM tbl_users WHERE email=:email AND password=:password")
-    suspend fun login(email: String?, password: String?): User
+    suspend fun login(email: String?, password: String?): User?
 
     @Query("SELECT * FROM tbl_users WHERE email=:email OR username=:username")
-    suspend fun duplicateUser(email: String?, username: String?): User
+    suspend fun duplicateUser(email: String?, username: String?): User?
+
+    @Query("SELECT * FROM tbl_users WHERE id=:id")
+    suspend fun checkUser(id: Long?): User?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun register(item: User): Long
