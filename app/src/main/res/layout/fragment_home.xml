@@ -69,4 +69,11 @@
 
     </com.google.android.material.search.SearchView>
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_not_found"
+        android:layout_width="156dp"
+        android:layout_height="156dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_not_found" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

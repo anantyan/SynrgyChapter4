@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -116,7 +117,13 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
 
     private fun bindObserver() {
         viewModel.getAll(pref.getUsrId()).observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            if (it.isEmpty()) {
+                binding.imgNotFound.isVisible = true
+                adapter.submitList(emptyList())
+            } else {
+                binding.imgNotFound.isVisible = false
+                adapter.submitList(it)
+            }
         }
 
         viewModel.getQuery.observe(viewLifecycleOwner) {
