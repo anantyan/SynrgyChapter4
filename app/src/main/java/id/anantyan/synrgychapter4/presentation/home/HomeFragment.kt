@@ -124,7 +124,7 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
         }
 
         viewModel.checkUser.observe(viewLifecycleOwner) {
-            binding.toolbar.title = "Welcome to, ${it.name}"
+            binding.toolbar.title = "Welcome back, ${it.name}"
         }
 
         viewModel.checkUser(pref.getUsrId())
@@ -138,7 +138,7 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
     override fun onLongClick(position: Int, item: Product) {
         MaterialAlertDialogBuilder(requireContext()).createDialog(
             title = item.name.toString(),
-            message = item.description.toString(),
+            message = "Are you seriously, delete? " + item.description.toString(),
             negativeAction = { dialog ->
                 dialog.cancel()
             },
