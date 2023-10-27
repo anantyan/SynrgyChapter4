@@ -28,6 +28,12 @@ Hasil challenge dari pembelajaran intensif chapter 4 - Yang dimana project terse
 
 ### 🖼️ Snapshoot
 
+![Desktop - 1](https://github.com/anantyan/SynrgyChapter4/assets/43742778/c62203aa-700d-433d-83bb-5320914d356b)
+
+![Desktop - 2](https://github.com/anantyan/SynrgyChapter4/assets/43742778/c4b90717-7223-43b4-9b2f-77a94a8f4307)
+
+![Desktop - 3](https://github.com/anantyan/SynrgyChapter4/assets/43742778/3b444dba-6666-49f9-82b9-b31cf1f31637)
+
 ### 📹 Capture Video
 
 _**Not Found**_ - Developer sedang tidak menyediakan Preview Video
