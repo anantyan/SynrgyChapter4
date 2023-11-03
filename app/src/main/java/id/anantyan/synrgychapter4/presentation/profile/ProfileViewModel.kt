@@ -4,20 +4,24 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import id.anantyan.synrgychapter4.R
-import id.anantyan.synrgychapter4.domain.UsersRepositoryImpl
+import id.anantyan.synrgychapter4.data.local.repository.PreferenceRepositoryImpl
+import id.anantyan.synrgychapter4.data.local.repository.UsersRepositoryImpl
+import id.anantyan.synrgychapter4.domain.PreferenceUseCase
 import id.anantyan.synrgychapter4.domain.UsersUseCase
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ProfileViewModel(application: Application) : AndroidViewModel(application) {
     private val usersUseCase = UsersUseCase(UsersRepositoryImpl(application))
+    private val preferenceUseCase = PreferenceUseCase(PreferenceRepositoryImpl(application))
     private var _getUsers = MutableLiveData<List<ProfileModel>>()
 
     val getUsers: LiveData<List<ProfileModel>> = _getUsers
+    val getTheme = preferenceUseCase.executeGetTheme()
+    val getUsrId = preferenceUseCase.executeGetUsrId()
 
     fun getUsers(id: Long?) {
         viewModelScope.launch {
@@ -30,6 +34,24 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                 )
                 _getUsers.postValue(items)
             }
+        }
+    }
+
+    fun setTheme(value: Boolean) {
+        viewModelScope.launch {
+            preferenceUseCase.executeSetTheme(value)
+        }
+    }
+
+    fun setLogin(value: Boolean) {
+        viewModelScope.launch {
+            preferenceUseCase.executeSetLogin(value)
+        }
+    }
+
+    fun setUsrId(value: Long) {
+        viewModelScope.launch {
+            preferenceUseCase.executeSetUsrId(value)
         }
     }
 }

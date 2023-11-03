@@ -11,12 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import id.anantyan.synrgychapter4.common.DataStoreManager
 import id.anantyan.synrgychapter4.common.UIState
 import id.anantyan.synrgychapter4.common.emailValid
 import id.anantyan.synrgychapter4.common.passwordValid
-import id.anantyan.synrgychapter4.common.SharedHelper
-import id.anantyan.synrgychapter4.common.SharedPreferences
 import id.anantyan.synrgychapter4.data.local.entities.User
 import id.anantyan.synrgychapter4.databinding.FragmentLoginBinding
 import io.github.anderscheow.validator.Validator
@@ -24,14 +21,13 @@ import io.github.anderscheow.validator.constant.Mode
 import io.github.anderscheow.validator.validator
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment(), View.OnClickListener {
 
     private val viewModel: LoginViewModel by viewModels()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private val pref: SharedHelper by lazy { SharedPreferences(requireContext()) }
-    private val datastore: DataStoreManager by lazy { DataStoreManager(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,15 +63,15 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun bindObserver() {
-        datastore.getTheme().onEach {
+        viewModel.getTheme.onEach {
             binding.btnTheme2.isChecked = it
         }.flowWithLifecycle(viewLifecycleOwner.lifecycle).launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.login.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is UIState.Success -> {
-                    pref.setLogin(true)
-                    pref.setUsrId(state.data?.id ?: -1L)
+                    viewModel.setLogin(true)
+                    viewModel.setUsrId(state.data?.id ?: -1L)
                     val destination = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                     findNavController().navigate(destination)
                 }
@@ -112,12 +108,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private fun bindView() {
         binding.btnLogin.setOnClickListener(this)
         binding.btnRegister.setOnClickListener(this)
-        binding.btnTheme2.setOnCheckedChangeListener { _, bool -> datastore.setTheme(bool) }
+        binding.btnTheme2.setOnCheckedChangeListener { _, bool -> viewModel.setTheme(bool) }
         checkAuthentication()
     }
 
     private fun checkAuthentication() {
-        if (pref.getLogin()) {
+        if (viewModel.getLogin) {
             val destination = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
             findNavController().navigate(destination)
         }

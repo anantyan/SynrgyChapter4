@@ -3,7 +3,6 @@ package id.anantyan.synrgychapter4.presentation.home
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +10,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.search.SearchView
-import id.anantyan.synrgychapter4.common.SharedHelper
-import id.anantyan.synrgychapter4.common.SharedPreferences
 import id.anantyan.synrgychapter4.common.calculateSpanCount
 import id.anantyan.synrgychapter4.common.createDialog
 import id.anantyan.synrgychapter4.data.local.entities.Product
@@ -35,7 +29,6 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
     private val binding get() = _binding!!
     private val adapter: HomeAdapter by lazy { HomeAdapter() }
     private val adapterSearch: HomeSearchAdapter by lazy { HomeSearchAdapter() }
-    private val pref: SharedHelper by lazy { SharedPreferences(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -101,7 +94,7 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            viewModel.getQuery(pref.getUsrId(), p0.toString())
+            viewModel.getQuery(p0.toString())
         }
 
         override fun afterTextChanged(p0: Editable?) { }
@@ -116,7 +109,7 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
     }
 
     private fun bindObserver() {
-        viewModel.getAll(pref.getUsrId()).observe(viewLifecycleOwner) {
+        viewModel.getAll().observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 binding.imgNotFound.isVisible = true
                 adapter.submitList(emptyList())
@@ -134,7 +127,7 @@ class HomeFragment : Fragment(), HomeInteraction, View.OnClickListener {
             binding.toolbar.title = "Welcome back, ${it.name}"
         }
 
-        viewModel.checkUser(pref.getUsrId())
+        viewModel.checkUser()
     }
 
     override fun onClick(position: Int, item: Product) {

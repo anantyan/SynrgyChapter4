@@ -5,24 +5,6 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
-class SharedPreferences(context: Context) : SharedHelper {
-
-    private var prefShared: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-
-    override fun setLogin(value: Boolean) = prefShared.set(LOOGED, value)
-    override fun getLogin() = prefShared.getBoolean(LOOGED, false)
-    override fun setUsrId(value: Long) = prefShared.set(USR_ID, value)
-    override fun getUsrId(): Long = prefShared.getLong(USR_ID, -1L)
-    override fun setInsertedCategories(value: Boolean) = prefShared.set(INSERTED_CATEGORIES, value)
-    override fun getInsertedCategories(): Boolean = prefShared.getBoolean(INSERTED_CATEGORIES, false)
-
-    companion object {
-        private const val LOOGED = "LOGIN"
-        private const val USR_ID = "USR_ID"
-        private const val INSERTED_CATEGORIES = "INSERT_CATEGORIES"
-    }
-}
-
 private fun SharedPreferences.settings(operation: (SharedPreferences.Editor) -> Unit) {
     this.edit(true) {
         operation(this)

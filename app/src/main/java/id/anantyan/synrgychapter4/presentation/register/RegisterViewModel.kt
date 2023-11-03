@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import id.anantyan.synrgychapter4.common.UIState
 import id.anantyan.synrgychapter4.data.local.entities.User
-import id.anantyan.synrgychapter4.domain.UsersRepositoryImpl
+import id.anantyan.synrgychapter4.data.local.repository.UsersRepositoryImpl
 import id.anantyan.synrgychapter4.domain.UsersUseCase
 import kotlinx.coroutines.launch
 

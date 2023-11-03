@@ -1,9 +1,10 @@
-package id.anantyan.synrgychapter4.domain
+package id.anantyan.synrgychapter4.data.local.repository
 
 import android.app.Application
 import id.anantyan.synrgychapter4.common.UIState
 import id.anantyan.synrgychapter4.data.local.database.RoomDB
 import id.anantyan.synrgychapter4.data.local.entities.Product
+import id.anantyan.synrgychapter4.domain.ProductsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
